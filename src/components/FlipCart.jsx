@@ -46,7 +46,7 @@ const Back = styled(Side)({
   justifyContent: "space-between",
 });
 
-export default function FlipCart({value , cardNumber , cvvNumber , expirationDate}) {
+export default function FlipCart({value , cardNumber , cvvNumber , expirationDate , cardHolder}) {
   const [refFade, inViewFade] = useInView({
     threshold: 0.3,
   });
@@ -85,15 +85,13 @@ export default function FlipCart({value , cardNumber , cvvNumber , expirationDat
                 <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[3]}</Box>
               </Box>
               <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
-                <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cvvNumber}</Box>
-                <Box sx={{ color: "white", width: "10%", height: "10%" }}>{expirationDate[0]} / {expirationDate[1]}</Box>
+                <Box sx={{ color: "white"}}>{cvvNumber}</Box>
+                <Box sx={{ color: "white" }}>{cardHolder}</Box>
+                <Box sx={{ color: "white" }}>{expirationDate[0]} / {expirationDate[1]}</Box>
               </Box>
             </Front>
-
             <Back>
-              <Box sx={{ p: 2 }}>
-                
-              </Box>
+              <Box sx={{ width : "100%" , height : "7vh" , bgcolor:"black" , marginTop : "5vh"}}></Box>
             </Back>
           </Inner>
         </Root>
