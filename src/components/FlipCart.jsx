@@ -1,0 +1,103 @@
+import { styled } from "@mui/material/styles";
+import { Box,Fade } from "@mui/material";
+import useInView from "../hooks/useInView";
+
+const Root = styled(Box)({
+  perspective: "1000px",
+  width: 520,
+  height: 320,
+  "&:hover .flipInner": {
+    transform: "rotateY(180deg)",
+  },
+});
+
+const Inner = styled(Box)({
+  position: "relative",
+  width: "100%",
+  height: "100%",
+  transition: "transform 0.8s",
+  transformStyle: "preserve-3d",
+});
+
+const Side = styled(Box)({
+  position: "absolute",
+  width: "100%",
+  height: "100%",
+  top: 0,
+  left: 0,
+  borderRadius: 12,
+  overflow: "hidden",
+  backfaceVisibility: "hidden",
+  boxShadow: "0 8px 24px rgba(0,0,0,0.12)",
+});
+
+const Front = styled(Side)({
+  pointer : "cursor",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "stretch",
+  justifyContent: "flex-start",
+});
+
+const Back = styled(Side)({
+  transform: "rotateY(180deg)",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+});
+
+export default function FlipCart({value , cardNumber , cvvNumber , expirationDate}) {
+  const [refFade, inViewFade] = useInView({
+    threshold: 0.3,
+  });
+  return (
+    <Box ref={refFade}>
+      <Fade
+        in={inViewFade}
+        timeout={{ enter: 400, exit: 1000 }}
+        easing="ease-in-out"
+      >
+        <Root>
+          <Inner className="flipInner">
+            <Front sx={{background: `linear-gradient(135deg, rgba(7, 53, 114, 0.${value[1]}) 0%, rgba(7, 53, 114, 0.${value[0]}) 100%)`,}}>
+              <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
+                <Box 
+                  sx={{ background: "linear-gradient(135deg, #ddccf0ff 0%, #d1e9f5ff 44%, #f8ece7ff 100%)", width: "15%", height: "55%", borderRadius : "0.8rem", position : "relative",
+                    "&::before": {
+                      content: '""',
+                      position: "absolute",
+                      width: "65%",
+                      height: "55%",
+                      borderRadius: "0.8rem",
+                      top: "50%",
+                      left: "50%", 
+                      transform: "translate(-50%, -50%)", 
+                      border : "4px solid rgba(128, 128, 128, 0.1)"
+                    }
+                  }} 
+                />
+                <Box sx={{ color: "white", width: "10%", height: "10%" }}>bank</Box>
+              </Box>
+              <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
+                <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[0]}</Box>
+                <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[1]}</Box>
+                <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[2]}</Box>
+                <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[3]}</Box>
+              </Box>
+              <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
+                <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cvvNumber}</Box>
+                <Box sx={{ color: "white", width: "10%", height: "10%" }}>{expirationDate[0]} / {expirationDate[1]}</Box>
+              </Box>
+            </Front>
+
+            <Back>
+              <Box sx={{ p: 2 }}>
+                
+              </Box>
+            </Back>
+          </Inner>
+        </Root>
+      </Fade>
+    </Box>
+  );
+}
