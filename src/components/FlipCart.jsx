@@ -1,6 +1,6 @@
 import { styled } from "@mui/material/styles";
 import { Box,Fade } from "@mui/material";
-import useInView from "../hooks/useInView";
+import { useEffect, useState } from "react";
 
 const Root = styled(Box)({
   perspective: "1000px",
@@ -43,59 +43,66 @@ const Back = styled(Side)({
   transform: "rotateY(180deg)",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "space-between",
+  justifyContent: "start",
+  alignItems: "start",
 });
 
-export default function FlipCart({value , cardNumber , cvvNumber , expirationDate , cardHolder}) {
-  const [refFade, inViewFade] = useInView({
-    threshold: 0.3,
-  });
+const colors = {
+  "amber": "255, 236, 179",
+  "darkBlue": "28, 27, 93",
+  "purple": "106, 27, 154",
+  "pink": "173, 20, 87",
+  "aqua": "92, 235, 223"
+};
+
+
+export default function FlipCart({value , cardNumber , cvvNumber , expirationDate , cardHolder , radioColor}) {
+  const [rgbaColor,setRgbaColor] = useState("")
+
+  useEffect(() => {
+    setRgbaColor(colors[radioColor]);
+  }, [radioColor]);
+
+
   return (
-    <Box ref={refFade}>
-      <Fade
-        in={inViewFade}
-        timeout={{ enter: 400, exit: 1000 }}
-        easing="ease-in-out"
-      >
-        <Root>
-          <Inner className="flipInner">
-            <Front sx={{background: `linear-gradient(135deg, rgba(7, 53, 114, 0.${value[1]}) 0%, rgba(7, 53, 114, 0.${value[0]}) 100%)`,}}>
-              <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
-                <Box 
-                  sx={{ background: "linear-gradient(135deg, #ddccf0ff 0%, #d1e9f5ff 44%, #f8ece7ff 100%)", width: "15%", height: "55%", borderRadius : "0.8rem", position : "relative",
-                    "&::before": {
-                      content: '""',
-                      position: "absolute",
-                      width: "65%",
-                      height: "55%",
-                      borderRadius: "0.8rem",
-                      top: "50%",
-                      left: "50%", 
-                      transform: "translate(-50%, -50%)", 
-                      border : "4px solid rgba(128, 128, 128, 0.1)"
-                    }
-                  }} 
-                />
-                <Box sx={{ color: "white", width: "10%", height: "10%" }}>bank</Box>
-              </Box>
-              <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
-                <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[0]}</Box>
-                <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[1]}</Box>
-                <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[2]}</Box>
-                <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[3]}</Box>
-              </Box>
-              <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
-                <Box sx={{ color: "white"}}>{cvvNumber}</Box>
-                <Box sx={{ color: "white" }}>{cardHolder}</Box>
-                <Box sx={{ color: "white" }}>{expirationDate[0]} / {expirationDate[1]}</Box>
-              </Box>
-            </Front>
-            <Back>
-              <Box sx={{ width : "100%" , height : "7vh" , bgcolor:"black" , marginTop : "5vh"}}></Box>
-            </Back>
-          </Inner>
-        </Root>
-      </Fade>
-    </Box>
+    <Root>
+      <Inner className="flipInner">
+        <Front sx={{background: `linear-gradient(135deg, rgba(${rgbaColor}, ${value[1]/100}) 0%, rgba(7, 53, 114, ${value[0]/100}) 100%)`,}}>
+          <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
+            <Box 
+              sx={{ background: "linear-gradient(135deg, #ddccf0ff 0%, #d1e9f5ff 44%, #f8ece7ff 100%)", width: "15%", height: "55%", borderRadius : "0.8rem", position : "relative",
+                "&::before": {
+                  content: '""',
+                  position: "absolute",
+                  width: "65%",
+                  height: "55%",
+                  borderRadius: "0.8rem",
+                  top: "50%",
+                  left: "50%", 
+                  transform: "translate(-50%, -50%)", 
+                  border : "4px solid rgba(128, 128, 128, 0.1)"
+                }
+              }} 
+            />
+            <Box sx={{ color: "white", width: "10%", height: "10%" }}>bank</Box>
+          </Box>
+          <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
+            <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[0]}</Box>
+            <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[1]}</Box>
+            <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[2]}</Box>
+            <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[3]}</Box>
+          </Box>
+          <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
+            <Box sx={{ color: "white"}}>{cvvNumber}</Box>
+            <Box sx={{ color: "white" }}>{cardHolder}</Box>
+            <Box sx={{ color: "white" }}>{expirationDate[0]} / {expirationDate[1]}</Box>
+          </Box>
+        </Front>
+        <Back>
+          <Box sx={{ width : "100%" , height : "3vh" , fontSize : "0.7rem" , textAlign:"start" , ml : "3vw" , mt :"2vh" }}>DS020817</Box>
+          <Box sx={{ width : "100%" , height : "7vh" , bgcolor:"black" }}></Box>
+        </Back>
+      </Inner>
+    </Root>
   );
 }

@@ -6,20 +6,19 @@ import CardNumberParts from "./CardNumberParts";
 import ExpirationSelects from "./ExpirationSelects";
 import CvvField from "./CvvField";
 import CardHolderField from "./CardHolderField";
-
+import CardColorPicker from "./CardColorPicker"
 export default function CardInput(props) {
   return (
     <Container
-      sx={{
-        p: 2,
-        height: "100%",
-        border: "1px rgba(0,0,0,0.2) solid",
-        borderRadius: "1rem",
-      }}
+      sx={{p: 2, height: "100%", border: "1px rgba(0,0,0,0.2) solid", borderRadius: "1rem",}}
       className={styles.input_container}
     >
       <Container sx={{ display: "flex" }}>
         <CardNumberParts cardNumber={props.cardNumber} setCardNumber={props.setCardNumber} />
+      </Container>
+
+      <Container>
+        <CardColorPicker radioColor={props.radioColor} setRadioColor={props.setRadioColor}/>
       </Container>
 
       <Container sx={{ mt: 2 }}>
