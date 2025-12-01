@@ -4,10 +4,22 @@
   left: 0;
   width: 280px;
   height: 180px;
-  background: #2b8cff;
   border-radius: 12px;
-  /* start translated to the right by 50vw; JS overrides this value as you scroll */
   transform: translateX(50vw) skewX(60deg);;
   will-change: transform;
-  /* no CSS transition so movement maps directly to scroll (instant) */
+  z-index: 1000;
+}
+.shadow{
+  z-index: 10;
+  position: absolute;
+  bottom: -100px;
+  left: 17%;
+  width: 40%;
+  /* height: 1vh; */
+  background-color: black;
+  opacity: 0.2;
+  transform: skewX(-60deg);
+  filter: blur(40);
+  border-radius: 20%;
+  box-shadow: 0px 0px 10px 30px rgba(0, 0, 0, 0.7);
 }

@@ -1,0 +1,10 @@
+.container {
+  position: fixed;
+  top: 30vh;
+  left: 0;
+  width: 280px;
+  height: 180px;
+  border-radius: 12px;
+  transform: translateX(50vw) skewX(-60deg);;
+  will-change: transform;
+}

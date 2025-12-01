@@ -1,11 +1,12 @@
 import { styled } from "@mui/material/styles";
 import { Box,Fade } from "@mui/material";
 import { useEffect, useState } from "react";
+import "../assets/css/FlipCart.css";
 
 const Root = styled(Box)({
   perspective: "1000px",
-  width: 520,
-  height: 320,
+  width: 320,
+  height: 180,
   "&:hover .flipInner": {
     transform: "rotateY(180deg)",
   },
@@ -56,7 +57,7 @@ const colors = {
 };
 
 
-export default function FlipCart({value , cardNumber , cvvNumber , expirationDate , cardHolder , radioColor}) {
+export default function  FlipCart({containerRef,value , cardNumber , cvvNumber , expirationDate , cardHolder , radioColor}) {
   const [rgbaColor,setRgbaColor] = useState("")
 
   useEffect(() => {
@@ -65,9 +66,14 @@ export default function FlipCart({value , cardNumber , cvvNumber , expirationDat
 
 
   return (
-    <Root>
+    <Root ref={containerRef} className="container">
       <Inner className="flipInner">
-        <Front sx={{background: `linear-gradient(135deg, rgba(${rgbaColor}, ${value[1]/100}) 0%, rgba(7, 53, 114, ${value[0]/100}) 100%)`,}}>
+        <Front
+          sx={{
+            background: `linear-gradient(135deg, rgba(${rgbaColor}, ${value[1] / 100}) 0%, rgba(7, 53, 114, ${value[0] / 100}) 100%)`,
+            color: radioColor === "amber" || radioColor === "aqua" ? "#10093fff" : "white",
+          }}
+        >
           <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
             <Box 
               sx={{ background: "linear-gradient(135deg, #ddccf0ff 0%, #d1e9f5ff 44%, #f8ece7ff 100%)", width: "15%", height: "55%", borderRadius : "0.8rem", position : "relative",
@@ -84,18 +90,18 @@ export default function FlipCart({value , cardNumber , cvvNumber , expirationDat
                 }
               }} 
             />
-            <Box sx={{ color: "white", width: "10%", height: "10%" }}>bank</Box>
+            <Box sx={{ width: "10%", height: "10%" }}>bank</Box>
           </Box>
           <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
-            <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[0]}</Box>
-            <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[1]}</Box>
-            <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[2]}</Box>
-            <Box sx={{ color: "white", width: "10%", height: "10%" }}>{cardNumber[3]}</Box>
+            <Box sx={{ width: "10%", height: "10%" }}>{cardNumber[0]}</Box>
+            <Box sx={{ width: "10%", height: "10%" }}>{cardNumber[1]}</Box>
+            <Box sx={{ width: "10%", height: "10%" }}>{cardNumber[2]}</Box>
+            <Box sx={{ width: "10%", height: "10%" }}>{cardNumber[3]}</Box>
           </Box>
           <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
-            <Box sx={{ color: "white"}}>{cvvNumber}</Box>
-            <Box sx={{ color: "white" }}>{cardHolder}</Box>
-            <Box sx={{ color: "white" }}>{expirationDate[0]} / {expirationDate[1]}</Box>
+            <Box>{cvvNumber}</Box>
+            <Box>{cardHolder}</Box>
+            <Box>{expirationDate[0]} / {expirationDate[1]}</Box>
           </Box>
         </Front>
         <Back>
