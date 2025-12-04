@@ -19,7 +19,7 @@ export default function Home({cards}){
     const onScroll = () => {
       const vh = window.innerHeight
       const start = 0.01 * vh
-      const duration = 1.4 * vh
+      const duration = 1.37 * vh
       const end = start + duration
       const y = window.scrollY
 
@@ -27,8 +27,8 @@ export default function Home({cards}){
 
       const el = containerRef.current
 
-      const startTranslate = 55
-      const endTranslate = 15
+      const startTranslate = 57
+      const endTranslate = 22
 
       const startSkew = -20 
       const endSkew = 0 
@@ -91,7 +91,7 @@ export default function Home({cards}){
         <div  ref={containerRef} className="container">
           <FlipCart value={value} cardNumber={cardNumber} cvvNumber={cvvNumber} expirationDate={expirationDate} cardHolder={cardHolder} radioColor={radioColor}/>
         </div>
-        <Box sx={{minWidth:"80vw", display : "flex" , flexDirection : "row" , justifyContent : "center" , alignItems : "center" , mt : "5vh" , minHeight : "100vh", padding : "1vh 10vw "}}>
+        <Container sx={{ display : "flex" , flexDirection : "row" , justifyContent : "center" , alignItems : "center" , mt : "5vh" , minHeight : "100vh", padding : "1vh 10vw "}}>
           <div style={{ padding: 24, display: "flex", flex :1,flexDirection :"column"}}>
             <h1>Make your own credit card</h1>
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptatem, reprehenderit deserunt sequi illo quia molestiae eligendi minus eius quas magni tenetur non iusto. Similique inventore possimus quo vitae qui rem? </p>
@@ -99,23 +99,22 @@ export default function Home({cards}){
           <div style={{ padding: 24, display: "flex", gap: 24 , flex :1, position : "relative"}}>
             <div className='shadow'></div>
           </div>
-        </Box>
+        </Container>
         <Box sx={{height : "30vh"}}></Box>
-        <Box sx={{maxWidth:"90vw", display : "flex" , flexDirection : "row" , mt : "5vh" , minHeight : "100vh" }}>
+        <Container sx={{ display : "flex" , flexDirection : "row" , mt : "5vh" , minHeight : "100vh" }}>
           <div style={{ padding: 24, display: "flex", flex :1, justifyContent : "center", alignItems : "center"}}>
           </div>
-          <div style={{padding: 24, display: "flex", flex :1}}>
+          <div style={{flex : 1,display : "flex" , justifyContent : "center",alignItems : "center"}}>
             <CardInput value={value} setValue={setValue} cardNumber={cardNumber} setCardNumber={setCardNumber} cvvNumber={cvvNumber} setCvvNumber={setCvvNumber} expirationDate={expirationDate} setExpirationDate={setExpirationDate} cardHolder={cardHolder} setCardHolder={setCardHolder}
               radioColor={radioColor} setRadioColor={setRadioColor}
             />
           </div>
-        </Box>
+        </Container>
         <Box sx={{height : "30vh"}}></Box>
         <Box sx={{maxWidth:"90vw",height : "100vh",minWidth :"80vw"}}>
           <Template cards={cards}/>
         </Box>
-        <Container sx={{height : "100vh"}}></Container>
-
+        <Container sx={{height : "20vh"}}></Container>
       </div>
     )
 }

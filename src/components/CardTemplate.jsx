@@ -1,9 +1,10 @@
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from '@mui/icons-material/Share';
 import { styled,Card,CardActions,IconButton } from "@mui/material";
 import FlipCart from "./FlipCart";
 import { Link } from 'react-router-dom';
-
+import { useState } from 'react';
 const AllTemplates = styled('div')(() => ({
     width: '100%',
     display: 'flex',
@@ -13,7 +14,9 @@ const AllTemplates = styled('div')(() => ({
     justifyContent: 'center',
 }));
 
+
 function CardTemplate({cards}) {
+    const [liked, setLiked] = useState(false);
     
     return(
         <AllTemplates>
@@ -32,9 +35,18 @@ function CardTemplate({cards}) {
                             />
                     </Link>
                     <CardActions disableSpacing>
-                        <IconButton aria-label="add to favorites">
-                            <FavoriteIcon />
+                        {/* how to make this only for one element */}
+                        <IconButton onClick={(e) => {
+                            console.log(e.target)
+                            setLiked(!liked)}}>
+                            
+                        {liked ? (
+                            <FavoriteIcon sx={{ color: "#ff7575" }} />
+                        ) : (
+                            <FavoriteBorderIcon sx={{ color: "#ff7575" }} />
+                        )}
                         </IconButton>
+
                         <IconButton aria-label="share">
                             <ShareIcon />
                         </IconButton>

@@ -4,7 +4,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { Container,IconButton } from '@mui/material';
 import { Link } from 'react-router-dom';
-import Home from '@mui/icons-material/Home'
+import Home from '@mui/icons-material/Home';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -97,7 +99,8 @@ function Header(props){
                 label={props.darkTheme ? "Dark Mode" : "Light Mode" }
             />
             </FormGroup>
-            <Link to={"/"}><IconButton><Home sx={{fontSize : "2rem",color :'black'}}></Home></IconButton></Link>
+            <Link to={"/"}><IconButton><Home sx={{color : props.darkTheme ? "white" : "black"}}></Home></IconButton></Link>
+            <Link to={"/"}><IconButton><FavoriteIcon sx={{color : props.darkTheme ? "white" : "black"}}></FavoriteIcon></IconButton></Link>
         </HeaderComponent>
     );
 }

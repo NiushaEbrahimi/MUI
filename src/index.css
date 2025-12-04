@@ -1,21 +1,23 @@
-*{
+html{
+  font-size: 25px;
+}
+:root {
+  --color-dark-light-mode: black;
+}
+
+* {
   box-sizing: border-box !important;
-  font-family: 'Dongle' , 'Roboto', sans-serif !important;
+  font-family: 'Dongle', 'Roboto', sans-serif !important;
+  font-weight: 500;
 }
-#root{
-  padding-top: 1.5rem !important;
-  margin: 0px !important;
-  padding-right: 0px;
-  padding-bottom: 0px;
-  padding-left: 0px;
-}
-body{
+
+body {
   background-color: rgba(0, 0, 0, 0.14);
   overflow-x: hidden;
 }
-.dark-mode{
+
+.dark-mode {
+  --color-dark-light-mode: white;
   background-color: rgb(5, 17, 43);
-}
-.dark-mode{
-  color: white;
+  color: var(--color-dark-light-mode);
 }

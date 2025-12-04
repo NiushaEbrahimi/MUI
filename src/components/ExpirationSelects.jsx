@@ -5,28 +5,31 @@ export default function ExpirationSelects({ expirationDate, setExpirationDate })
     <Box sx={{ display: "flex", gap: 2, alignItems: "center" , flexDirection : "column"}}>
       <FormControl sx={{ minWidth: "8vw" }}>
         <InputLabel id="month-select-label">Month</InputLabel>
+
         <Select
           labelId="month-select-label"
           id="month-select"
           value={String(expirationDate[1])}
           label="Month"
-          onChange={(e) => {
-            const val = String(e.target.value);
-            setExpirationDate((prev = []) => {
+          onChange={(e) =>
+            setExpirationDate((prev) => {
               const next = [...prev];
-              next[1] = val;
+              next[1] = String(e.target.value);
               return next;
-            });
-          }}
+            })
+          }
         >
-          <MenuItem value={"1"}>1</MenuItem>
-          <MenuItem value={"2"}>2</MenuItem>
-          <MenuItem value={"3"}>3</MenuItem>
-          <MenuItem value={"4"}>4</MenuItem>
-          <MenuItem value={"5"}>5</MenuItem>
-          <MenuItem value={"12"}>12</MenuItem>
+          {Array.from({ length: 12 }, (_, i) => {
+            const month = String(i + 1);
+            return (
+              <MenuItem key={month} value={month}>
+                {month}
+              </MenuItem>
+            );
+          })}
         </Select>
       </FormControl>
+
 
       <FormControl sx={{ minWidth: "8vw" }}>
         <InputLabel id="year-select-label">Year</InputLabel>

@@ -1,22 +1,62 @@
 import React from "react";
 import { Box, TextField } from "@mui/material";
 
-export default function CardNumberParts({ cardNumber = ["", "", "", ""], setCardNumber }) {
+export default function CardNumberParts({
+  cardNumber = ["", "", "", ""],
+  setCardNumber,
+  }) {
   const updatePart = (index) => (e) => {
-    const v = e.target.value;
+    const value = e.target.value;
     setCardNumber((prev = []) => {
       const next = [...prev];
-      next[index] = v;
+      next[index] = value;
       return next;
     });
   };
 
   return (
-    <Box sx={{ display: "flex", gap: 1, width: "100%", alignItems: "center" }}>
-      <TextField label={cardNumber[0]} variant="filled" disabled />
-      <TextField label={cardNumber[1]} variant="filled" disabled />
-      <TextField label="3rd Part" value={cardNumber[2] ?? ""} onChange={updatePart(2)} />
-      <TextField label="4th Part" value={cardNumber[3] ?? ""} onChange={updatePart(3)} />
+    <Box
+      sx={{
+        display: "flex",
+        gap: 2,
+        width: "100%",
+        alignItems: "center",
+      }}
+    >
+      {/* First 4 fields */}
+      {[0, 1, 2, 3].map((i) => (
+        <TextField
+          key={i}
+          label={
+            i === 0
+              ? cardNumber[0] || "Part 1"
+              : i === 1
+              ? cardNumber[1] || "Part 2"
+              : i === 2
+              ? "3rd Part"
+              : "4th Part"
+          }
+          inputProps={{ maxLength: 4 }}
+          value={cardNumber[i] || ""}
+          onChange={i > 1 ? updatePart(i) : undefined}
+          variant="filled"
+          disabled={i < 2}
+          fullWidth
+          sx={{
+            "& .MuiInputBase-root": {
+              height: "60px", 
+              borderRadius: "8px",
+              fontSize: "1.1rem",
+              borderBottom : "none !important"
+            },
+            "& .MuiFormLabel-root": {
+              fontSize: "1rem",
+              borderBottom : "none"
+            },
+          }}
+          
+        />
+      ))}
     </Box>
   );
 }

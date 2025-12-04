@@ -4,11 +4,12 @@ import { useEffect, useState } from "react";
 import "../assets/css/FlipCart.css";
 
 const Root = styled(Box)({
+  fontSize : "0.9rem",
   perspective: "1000px",
   "&:hover .flipInner": {
     transform: "rotateY(180deg)",
   },
-  cursor : "pointer"
+  cursor : "pointer",
 });
 
 const Inner = styled(Box)({
@@ -17,6 +18,8 @@ const Inner = styled(Box)({
   height: "100%",
   transition: "transform 0.8s",
   transformStyle: "preserve-3d",
+  backgroundColor : "white",
+  borderRadius: 12,
 });
 
 const Side = styled(Box)({
@@ -98,15 +101,15 @@ export default function  FlipCart({widthInput=320,heightInput=180,value = [39,80
             <Box sx={{ width: "10%", height: "10%" }}>{radioColor[0]==="#"? cardNumber.slice(8,12):cardNumber[0]}</Box>
             <Box sx={{ width: "10%", height: "10%" }}>{radioColor[0]==="#"? cardNumber.slice(12,16):cardNumber[0]}</Box>
           </Box>
-          <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
+          <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box",fontSize : "0.7rem"}}>
             <Box>{cvvNumber}</Box>
             <Box>{cardHolder}</Box>
             <Box>{expirationDate[0]} / {expirationDate[1]}</Box>
           </Box>
         </Front>
-        <Back>
+        <Back sx={{color : "black"}}>
           <Box sx={{ width : "100%" , height : "3vh" , fontSize : "0.7rem" , textAlign:"start" , ml : "3vw" , mt :"2vh" }}>DS020817</Box>
-          <Box sx={{ width : "100%" , height : "7vh" , bgcolor:"black" }}></Box>
+          <Box sx={{ width : "100%" , height : "20%" , bgcolor:"black" }}></Box>
         </Back>
       </Inner>
     </Root>
