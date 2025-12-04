@@ -16,10 +16,6 @@ function CardColorPicker({radioColor,setRadioColor}){
         inputProps: { 'aria-label': item },
     });
 
-    React.useEffect(()=>{
-        console.log(radioColor)
-        console.log(typeof(radioColor))
-    },[radioColor])
 
     return(
         <div>

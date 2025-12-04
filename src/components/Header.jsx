@@ -2,7 +2,9 @@ import { styled } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import { Container, Box } from '@mui/material';
+import { Container,IconButton } from '@mui/material';
+import { Link } from 'react-router-dom';
+import Home from '@mui/icons-material/Home'
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -74,6 +76,8 @@ const HeaderComponent = styled(Container)(()=>({
     translate : "-50% -50%",
     position : "fixed",
     zIndex : 100,
+    justifyContent: "space-around",
+    alignItems : "center"
 }))
 
 function Header(props){
@@ -93,6 +97,7 @@ function Header(props){
                 label={props.darkTheme ? "Dark Mode" : "Light Mode" }
             />
             </FormGroup>
+            <Link to={"/"}><IconButton><Home sx={{fontSize : "2rem",color :'black'}}></Home></IconButton></Link>
         </HeaderComponent>
     );
 }

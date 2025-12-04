@@ -5,11 +5,10 @@ import "../assets/css/FlipCart.css";
 
 const Root = styled(Box)({
   perspective: "1000px",
-  width: 320,
-  height: 180,
   "&:hover .flipInner": {
     transform: "rotateY(180deg)",
   },
+  cursor : "pointer"
 });
 
 const Inner = styled(Box)({
@@ -57,21 +56,22 @@ const colors = {
 };
 
 
-export default function  FlipCart({containerRef,value , cardNumber , cvvNumber , expirationDate , cardHolder , radioColor}) {
+export default function  FlipCart({widthInput=320,heightInput=180,value = [39,80] , cardNumber , cvvNumber , expirationDate , cardHolder , radioColor , rgba2Color = "7, 53, 114",color}) {
   const [rgbaColor,setRgbaColor] = useState("")
 
   useEffect(() => {
     setRgbaColor(colors[radioColor]);
   }, [radioColor]);
 
-
   return (
-    <Root ref={containerRef} className="container">
+    <Root sx={{width : widthInput , height : heightInput}}>
       <Inner className="flipInner">
         <Front
           sx={{
-            background: `linear-gradient(135deg, rgba(${rgbaColor}, ${value[1] / 100}) 0%, rgba(7, 53, 114, ${value[0] / 100}) 100%)`,
-            color: radioColor === "amber" || radioColor === "aqua" ? "#10093fff" : "white",
+            background: radioColor[0]==="#" ?`linear-gradient(135deg, ${radioColor}  0%, ${rgba2Color}  100%)`
+            :  `linear-gradient(135deg, rgba(${rgbaColor}, ${value[1] / 100}) 0%, rgba(${rgba2Color}, ${value[0] / 100}) 100%)`
+            ,
+            color: radioColor[0]==="#" ? color : radioColor === "amber" || radioColor === "aqua" ? "#10093fff" : "white",
           }}
         >
           <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
@@ -93,10 +93,10 @@ export default function  FlipCart({containerRef,value , cardNumber , cvvNumber ,
             <Box sx={{ width: "10%", height: "10%" }}>bank</Box>
           </Box>
           <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
-            <Box sx={{ width: "10%", height: "10%" }}>{cardNumber[0]}</Box>
-            <Box sx={{ width: "10%", height: "10%" }}>{cardNumber[1]}</Box>
-            <Box sx={{ width: "10%", height: "10%" }}>{cardNumber[2]}</Box>
-            <Box sx={{ width: "10%", height: "10%" }}>{cardNumber[3]}</Box>
+            <Box sx={{ width: "10%", height: "10%" }}>{radioColor[0]==="#"? cardNumber.slice(0,4):cardNumber[0]}</Box>
+            <Box sx={{ width: "10%", height: "10%" }}>{radioColor[0]==="#"? cardNumber.slice(4,8):cardNumber[0]}</Box>
+            <Box sx={{ width: "10%", height: "10%" }}>{radioColor[0]==="#"? cardNumber.slice(8,12):cardNumber[0]}</Box>
+            <Box sx={{ width: "10%", height: "10%" }}>{radioColor[0]==="#"? cardNumber.slice(12,16):cardNumber[0]}</Box>
           </Box>
           <Box sx={{ p: 2, display: "flex", flexDirection: "row", alignItems: "stretch", justifyContent: "space-between", gap: 3, width: "100%", height: "100%", boxSizing: "border-box"}}>
             <Box>{cvvNumber}</Box>
