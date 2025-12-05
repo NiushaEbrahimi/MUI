@@ -1,16 +1,55 @@
-# React + Vite
+# MUI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> A React UI project leveraging Material-UI / MUI components.  
+> (You can replace this tag line with a more descriptive sentence that reflects what your app is.)
 
-Currently, two official plugins are available:
+## About The Project
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project was created as a hands-on way for me to learn and practice MUI (Material-UI).  
+To explore its components, styling system, and design patterns, I built a **credit card customizer** where users can adjust colors, card number, and visual elements.  
+The goal is to understand how MUI behaves in real-world UI scenarios while improving my React and component design skills.
 
-## React Compiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Built With
 
-## Expanding the ESLint configuration
+List major frameworks / libraries / technologies used.  
+For example:  
+- React  
+- MUI (Material-UI) — for UI components / styling  
+- also Django for the backend,which will be added later
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Getting Started
+
+These instructions will get a copy of the project up and running on your local machine for development and testing purposes.
+
+### Prerequisites
+
+What you need to install before running the project (e.g. Node, npm, yarn, etc.)
+
+```bash
+# Example
+Node.js (version X or higher)
+npm or yarn
+```
+
+### Installation
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/NiushaEbrahimi/MUI.git
+cd MUI
+npm install   # or yarn install
+# then run the dev server : 
+npm run dev
+```
+
+
+## Demo
+
+The live preview of the project will be available here once deployment is completed:
+
+ **[Live Demo](https://muicredit.vercel.app/)**
+
+A screenshot or GIF preview will also be added after deployment.
+
