@@ -1,7 +1,6 @@
 # MUI
 
 > A React UI project leveraging Material-UI / MUI components.  
-> (You can replace this tag line with a more descriptive sentence that reflects what your app is.)
 
 ## About The Project
 
