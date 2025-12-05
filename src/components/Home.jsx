@@ -4,7 +4,7 @@ import { Container, Box } from "@mui/material";
 import { useEffect, useState, useRef } from "react";
 import Template from "./Template";
 
-export default function Home({ cards }) {
+export default function Home({ cards,likedCards,setLikedCards }) {
   const [value, setValue] = useState([39, 80]);
   const [cardNumber, setCardNumber] = useState(["6221", "0612", "", ""]);
   const [expirationDate, setExpirationDate] = useState(["", ""]);
@@ -53,7 +53,9 @@ export default function Home({ cards }) {
         if (!didUnpin.current) {
           el.style.position = "absolute";
 
-          el.style.top = `${originalTop.current + duration}px`;
+          const finalTop = originalTop.current + (start + duration);
+          el.style.top = `${finalTop}px`;
+
           el.style.left = `${endTranslate}vw`;
           el.style.transform = `translateX(0vw) skewX(${endSkew}deg) scale(${endScale})`;
 
@@ -122,7 +124,7 @@ export default function Home({ cards }) {
         </Container>
         <Box sx={{height : "30vh"}}></Box>
         <Box sx={{maxWidth:"90vw",height : "100vh",minWidth :"80vw"}}>
-          <Template cards={cards}/>
+          <Template cards={cards} likedCards={likedCards} setLikedCards={setLikedCards}/>
         </Box>
         <Container sx={{height : "20vh"}}></Container>
       </div>

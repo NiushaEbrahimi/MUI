@@ -77,7 +77,7 @@ const HeaderComponent = styled(Container)(()=>({
     left : "50%",
     translate : "-50% -50%",
     position : "fixed",
-    zIndex : 100,
+    zIndex : 10000,
     justifyContent: "space-around",
     alignItems : "center"
 }))
@@ -100,7 +100,7 @@ function Header(props){
             />
             </FormGroup>
             <Link to={"/"}><IconButton><Home sx={{color : props.darkTheme ? "white" : "black"}}></Home></IconButton></Link>
-            <Link to={"/"}><IconButton><FavoriteIcon sx={{color : props.darkTheme ? "white" : "black"}}></FavoriteIcon></IconButton></Link>
+            <Link to={"/liked"}><IconButton><FavoriteIcon sx={{color : props.darkTheme ? "white" : "black"}}></FavoriteIcon></IconButton></Link>
         </HeaderComponent>
     );
 }

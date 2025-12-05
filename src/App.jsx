@@ -4,13 +4,14 @@ import Header from "./components/Header"
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Home from './components/Home';
 import EachCart from "./components/EachCart"
-
+import LikedCards from "./components/LikedCard"
 // TODO: make the form prettier
 // TODO: dark mode
 
 function App() {
   const [darkTheme, setDarkTheme] = useState(false);
   const [cards,setCards] = useState([]);
+  const [likedCards, setLikedCards] = useState({});
 
   useEffect(()=>{
     if(darkTheme){
@@ -46,10 +47,11 @@ function App() {
     <BrowserRouter>
       <Header darkTheme={darkTheme} setDarkTheme = {setDarkTheme}></Header>
       <Routes>
-        <Route path="/" element={<Home cards={cards}/>}/>
+        <Route path="/" element={<Home cards={cards} likedCards={likedCards} setLikedCards={setLikedCards}/>}/>
         {cards.map((card)=>{
           return(<Route key={card.id} path={`cards/${card.id}`} element={<EachCart card={card}/>}/>)
         })}
+        <Route path='/liked' element={<LikedCards cards={cards} likedCards={likedCards} setLikedCards={setLikedCards}></LikedCards>}></Route>
       </Routes>
     </BrowserRouter>
   );
