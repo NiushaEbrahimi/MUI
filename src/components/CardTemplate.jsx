@@ -4,19 +4,20 @@ import ShareIcon from '@mui/icons-material/Share';
 import { styled,Card,CardActions,IconButton } from "@mui/material";
 import FlipCart from "./FlipCart";
 import { Link } from 'react-router-dom';
+import { ContextCards } from "../context/Provider";
+import { useContext } from "react";
 
 const AllTemplates = styled('div')(() => ({
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
-    gap: '20px',
     flexWrap: 'wrap',
     justifyContent: 'center',
 }));
 
 
-function CardTemplate({ cards , likedCards , setLikedCards }) {
-
+function CardTemplate({ likedCards , setLikedCards }) {
+  const cards = useContext(ContextCards)
   const toggleLike = (id) => {
     setLikedCards((prev) => ({
       ...prev,
@@ -25,12 +26,12 @@ function CardTemplate({ cards , likedCards , setLikedCards }) {
   };
 
   return (
-    <AllTemplates>
+    <AllTemplates sx={{gap: {xs:'5px',md:'20px'},}}>
       {cards.map((card) => {
         const isLiked = likedCards[card.id] || false;
 
         return (
-          <Card key={card.id} sx={{ minWidth: "20vw", display:"flex", flexDirection:"column", p:3 }}>
+          <Card key={card.id} sx={{ minWidth: "20vw", display:"flex", flexDirection:"column", p:{xs:2,md:3}, borderRadius:"1rem" }}>
             <Link to={`http://localhost:5173/cards/${card.id}`}>
               <FlipCart
                 value={[39, 80]}

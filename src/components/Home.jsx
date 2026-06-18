@@ -4,7 +4,7 @@ import { Container, Box } from "@mui/material";
 import { useEffect, useState, useRef } from "react";
 import Template from "./Template";
 
-export default function Home({ cards,likedCards,setLikedCards }) {
+export default function Home({ likedCards,setLikedCards }) {
   const [value, setValue] = useState([39, 80]);
   const [cardNumber, setCardNumber] = useState(["6221", "0612", "", ""]);
   const [expirationDate, setExpirationDate] = useState(["", ""]);
@@ -26,21 +26,31 @@ export default function Home({ cards,likedCards,setLikedCards }) {
     const onScroll = () => {
       const vh = window.innerHeight;
       const start = 0.01 * vh;
-      const duration = 1.37 * vh;
+      let duration = 1.37 * vh;
+      if(window.innerWidth < 900){
+        duration = 1 * vh;
+      }
       const end = start + duration;
       const y = window.scrollY;
 
       if (!containerRef.current) return;
       const el = containerRef.current;
 
-      const startTranslate = 57;
-      const endTranslate = 22;
+      let startTranslate = 57;
+      let endTranslate = 18;
+      if(window.innerWidth < 900){
+        startTranslate = 50;
+        endTranslate = 25;
+      }
 
       const startSkew = -20;
       const endSkew = 0;
 
-      const startScale = 1;
+      let startScale = 1;
       const endScale = 1.5;
+      if(window.innerWidth < 900){
+        startScale = 0.9;
+      }
 
       const pin = () => {
         el.style.position = "fixed";
@@ -112,11 +122,13 @@ export default function Home({ cards,likedCards,setLikedCards }) {
             <div className='shadow'></div>
           </div>
         </Container>
-        <Box sx={{height : "30vh"}}></Box>
-        <Container sx={{ display : "flex" , flexDirection : "row" , mt : "5vh" , minHeight : "100vh" }}>
+        <Box sx={{height : {xs:"50vh",md:"30vh"}}}></Box>
+        <Container sx={{ display : "flex" , flexDirection : {xs:"column",md:"row"} , mt : "5vh" , minHeight : "100vh" }}>
           <div style={{ padding: 24, display: "flex", flex :1, justifyContent : "center", alignItems : "center"}}>
           </div>
-          <div style={{flex : 1,display : "flex" , justifyContent : "center",alignItems : "center"}}>
+          <div 
+            style={{flex : 1,display : "flex" , justifyContent : "center",alignItems : "center"}}
+          >
             <CardInput value={value} setValue={setValue} cardNumber={cardNumber} setCardNumber={setCardNumber} cvvNumber={cvvNumber} setCvvNumber={setCvvNumber} expirationDate={expirationDate} setExpirationDate={setExpirationDate} cardHolder={cardHolder} setCardHolder={setCardHolder}
               radioColor={radioColor} setRadioColor={setRadioColor}
             />
@@ -124,7 +136,7 @@ export default function Home({ cards,likedCards,setLikedCards }) {
         </Container>
         <Box sx={{height : "30vh"}}></Box>
         <Box sx={{maxWidth:"90vw",height : "100vh",minWidth :"80vw"}}>
-          <Template cards={cards} likedCards={likedCards} setLikedCards={setLikedCards}/>
+          <Template likedCards={likedCards} setLikedCards={setLikedCards}/>
         </Box>
         <Container sx={{height : "20vh"}}></Container>
       </div>
