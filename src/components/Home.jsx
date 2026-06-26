@@ -4,7 +4,7 @@ import { Container, Box } from "@mui/material";
 import { useEffect, useState, useRef } from "react";
 import Template from "./Template";
 
-export default function Home({ likedCards,setLikedCards }) {
+export default function Home() {
   const [value, setValue] = useState([39, 80]);
   const [cardNumber, setCardNumber] = useState(["6221", "0612", "", ""]);
   const [expirationDate, setExpirationDate] = useState(["", ""]);
@@ -136,7 +136,7 @@ export default function Home({ likedCards,setLikedCards }) {
         </Container>
         <Box sx={{height : "30vh"}}></Box>
         <Box sx={{maxWidth:"90vw",height : "100vh",minWidth :"80vw"}}>
-          <Template likedCards={likedCards} setLikedCards={setLikedCards}/>
+          <Template/>
         </Box>
         <Container sx={{height : "20vh"}}></Container>
       </div>

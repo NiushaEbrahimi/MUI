@@ -57,7 +57,6 @@ function ProjectFAQ() {
 
 export default function About() {
     const {mode,_} = useColorScheme();
-    console.log(mode)
     return (
         <Box
         sx={{

@@ -4,7 +4,7 @@ import ShareIcon from '@mui/icons-material/Share';
 import { styled,Card,CardActions,IconButton } from "@mui/material";
 import FlipCart from "./FlipCart";
 import { Link } from 'react-router-dom';
-import { ContextCards } from "../context/Provider";
+import { LikedContext } from "../context/LikedProvider";
 import { useContext } from "react";
 
 const AllTemplates = styled('div')(() => ({
@@ -16,15 +16,10 @@ const AllTemplates = styled('div')(() => ({
 }));
 
 
-function CardTemplate({ likedCards , setLikedCards }) {
-  const cards = useContext(ContextCards)
-  const toggleLike = (id) => {
-    setLikedCards((prev) => ({
-      ...prev,
-      [id]: !prev[id],   // toggle only THIS card
-    }));
-  };
-
+function CardTemplate({ cards }) {
+  
+  const {likedCards,toggle} = useContext(LikedContext);
+  console.log(likedCards)
   return (
     <AllTemplates sx={{gap: {xs:'5px',md:'20px'},}}>
       {cards.map((card) => {
@@ -32,7 +27,7 @@ function CardTemplate({ likedCards , setLikedCards }) {
 
         return (
           <Card key={card.id} sx={{ minWidth: "20vw", display:"flex", flexDirection:"column", p:{xs:2,md:3}, borderRadius:"1rem" }}>
-            <Link to={`http://localhost:5173/cards/${card.id}`}>
+            <Link to={`/cards/${card.id}`}>
               <FlipCart
                 value={[39, 80]}
                 cardNumber={card.card_number}
@@ -46,7 +41,7 @@ function CardTemplate({ likedCards , setLikedCards }) {
             </Link>
 
             <CardActions disableSpacing>
-              <IconButton onClick={() => {toggleLike(card.id)}}>
+              <IconButton onClick={() => {toggle(card.id)}}>
                 {isLiked ? (
                   <FavoriteIcon sx={{ color: "#ff7575" }} />
                 ) : (

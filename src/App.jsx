@@ -9,12 +9,12 @@ import {MOCK_API} from './hooks/useCards';
 import CardProvider from "./context/Provider"
 import { ContextCards } from './context/Provider';
 import About from "./components/About";
+import LikedProvider from './context/LikedProvider';
 
 // TODO: make the form prettier
 // TODO: dark mode
 function AppContent({ darkTheme, setDarkTheme }) {
   const cards = useContext(ContextCards);
-  const [likedCards, setLikedCards] = useState({});
 
   useEffect(() => {
     const body = document.body;
@@ -26,11 +26,11 @@ function AppContent({ darkTheme, setDarkTheme }) {
     <BrowserRouter>
       <Header darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
       <Routes>
-        <Route path="/" element={<Home likedCards={likedCards} setLikedCards={setLikedCards} />} />
+        <Route path="/" element={<Home />} />
         {cards.map((card) => (
           <Route key={card.id} path={`cards/${card.id}`} element={<EachCart card={card} />} />
         ))}
-        <Route path='/liked' element={<LikedCards cards={cards} likedCards={likedCards} setLikedCards={setLikedCards} />} />
+        <Route path='/liked' element={<LikedCards cards={cards}/>} />
         <Route path='/about' element={<About />} />
       </Routes>
     </BrowserRouter>
@@ -41,8 +41,10 @@ export default function App() {
   const [darkTheme, setDarkTheme] = useState(false);
 
   return (
-    <CardProvider themeMode={darkTheme ? 'dark' : 'light'}>
-      <AppContent darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
-    </CardProvider>
+    <LikedProvider>
+      <CardProvider themeMode={darkTheme ? 'dark' : 'light'}>
+        <AppContent darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
+      </CardProvider>
+    </LikedProvider>
   );
 }
