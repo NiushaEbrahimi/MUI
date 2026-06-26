@@ -2,11 +2,13 @@ import { styled, useTheme, alpha, useColorScheme } from '@mui/material/styles';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import { Container, IconButton } from '@mui/material';
+import { Container, IconButton, Badge } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import Home from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Face2Icon from '@mui/icons-material/Face2';
+import { LikedContext } from '../context/LikedProvider';
+import { useContext } from 'react';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -92,6 +94,7 @@ const HeaderComponent = styled(Container)(({ theme }) => ({
 
 function Header(props){
   const theme = useTheme();
+  const {likedCards} = useContext(LikedContext);
   const {_,setMode} = useColorScheme();
   return (
     <HeaderComponent>
@@ -129,7 +132,9 @@ function Header(props){
               '&:hover': { backgroundColor: alpha(theme.palette.action.hover, 0.2) },
             }}
           >
-            <FavoriteIcon sx={{ color: 'inherit' }} />
+            <Badge badgeContent={Object.values(likedCards).length} color="error">
+              <FavoriteIcon sx={{ color: 'inherit' }} />
+            </Badge>
           </IconButton>
         )}
       </NavLink>
