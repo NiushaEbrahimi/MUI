@@ -8,6 +8,7 @@ import LikedCards from "./components/LikedCard"
 import {MOCK_API} from './hooks/useCards';
 import CardProvider from "./context/Provider"
 import { ContextCards } from './context/Provider';
+import About from "./components/About";
 
 // TODO: make the form prettier
 // TODO: dark mode
@@ -30,6 +31,7 @@ function AppContent({ darkTheme, setDarkTheme }) {
           <Route key={card.id} path={`cards/${card.id}`} element={<EachCart card={card} />} />
         ))}
         <Route path='/liked' element={<LikedCards cards={cards} likedCards={likedCards} setLikedCards={setLikedCards} />} />
+        <Route path='/about' element={<About />} />
       </Routes>
     </BrowserRouter>
   );
