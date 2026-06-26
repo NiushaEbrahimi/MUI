@@ -1,54 +1,87 @@
 # MUI
+<p align="center">
+  <img src="https://img.shields.io/badge/status-in%20progress-lightgrey" alt="Status">
+  <img src="https://img.shields.io/badge/project-not%20complete-orange" alt="Status">
+</p>
 
-> A React UI project leveraging Material-UI / MUI components.  
-
-## About The Project
-
-This project was created as a hands-on way for me to learn and practice MUI (Material-UI).  
-To explore its components, styling system, and design patterns, I built a **credit card customizer** where users can adjust colors, card number, and visual elements.  
-The goal is to understand how MUI behaves in real-world UI scenarios while improving my React and component design skills.
+<p align="center">
+  <img src="./src/assets/gif/demo.gif" alt="Project Demo" width="900">
+</p>
 
 
-## Built With
+A React project built to explore and practice Material UI (MUI) through a real-world interface.
 
-List major frameworks / libraries / technologies used.  
-For example:  
-- React  
-- MUI (Material-UI) — for UI components / styling  
-- also Django for the backend,which will be added later
+## Demo
 
-## Getting Started
+Live demo:
+[![Demo](./src/assets/gif/demo.gif)](https://muiprivate.vercel.app/)
 
-These instructions will get a copy of the project up and running on your local machine for development and testing purposes.
+**Preview**
 
-### Prerequisites
+<img src="./src/assets/gif/demo.gif" alt="Demo" width="900">
 
-What you need to install before running the project (e.g. Node, npm, yarn, etc.)
+---
 
-```bash
-# Example
-Node.js (version X or higher)
-npm or yarn
-```
+## About
 
-### Installation
+This project was created as a hands-on way to learn and experiment with Material UI (MUI), its component system, styling architecture, and design patterns.
 
-Clone the repo and install dependencies:
+To make the learning process practical, I built a credit card customizer that allows users to modify card colors, numbers, and visual elements in real time.
+
+The backend will be implemented later using Django.
+
+---
+
+## Tech Stack
+
+* React
+* Material UI (MUI)
+* Vite
+* Django (planned)
+
+---
+
+## Requirements
+
+Before running the project locally, make sure you have:
+
+* Node.js 18+
+* npm or yarn
+
+---
+
+## Installation
+
+Clone the repository:
 
 ```bash
 git clone https://github.com/NiushaEbrahimi/MUI.git
 cd MUI
-npm install   # or yarn install
-# then run the dev server : 
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
 npm run dev
 ```
 
+---
 
-## Demo
+## Roadmap
 
-The live preview of the project will be available here once deployment is completed:
+* [x] Badge for Favorite
+* [ ] form improvments (theme and numbers inputing)
+* [ ] info in EachCard component
+* [ ] improving responsive
 
- **[Live Demo](https://muicredit.vercel.app/)**
+---
 
-A screenshot or GIF preview will also be added after deployment.
+## License
 
+This project is intended for learning and experimentation.
