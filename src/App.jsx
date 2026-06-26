@@ -11,13 +11,14 @@ import { ContextCards } from './context/Provider';
 
 // TODO: make the form prettier
 // TODO: dark mode
-function AppContent() {
-  const cards = useContext(ContextCards); // ✅ now inside the provider
-  const [darkTheme, setDarkTheme] = useState(false);
+function AppContent({ darkTheme, setDarkTheme }) {
+  const cards = useContext(ContextCards);
   const [likedCards, setLikedCards] = useState({});
 
   useEffect(() => {
-    document.querySelector("body").classList.toggle("dark-mode", darkTheme);
+    const body = document.body;
+    body.classList.toggle("dark-mode", darkTheme);
+    body.classList.toggle("light-mode", !darkTheme);
   }, [darkTheme]);
 
   return (
@@ -35,9 +36,11 @@ function AppContent() {
 }
 
 export default function App() {
+  const [darkTheme, setDarkTheme] = useState(false);
+
   return (
-    <CardProvider>
-      <AppContent />
+    <CardProvider themeMode={darkTheme ? 'dark' : 'light'}>
+      <AppContent darkTheme={darkTheme} setDarkTheme={setDarkTheme} />
     </CardProvider>
   );
 }

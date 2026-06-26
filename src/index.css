@@ -12,12 +12,19 @@ html{
 }
 
 body {
-  background-color: rgba(0, 0, 0, 0.14);
+  background-color: #00000024;
   overflow-x: hidden;
+  transition: background-color 180ms ease, color 180ms ease;
 }
 
-.dark-mode {
+body.dark-mode {
   --color-dark-light-mode: white;
-  background-color: rgb(5, 17, 43);
-  color: var(--color-dark-light-mode);
+  background-color: #05112b !important;
+  color: var(--color-dark-light-mode) !important;
+}
+
+body.light-mode {
+  --color-dark-light-mode: black;
+  background-color: #00000024 !important;
+  color: var(--color-dark-light-mode) !important;
 }

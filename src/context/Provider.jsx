@@ -1,10 +1,18 @@
 import { createContext, useEffect, useState } from "react";
 import { MOCK_API } from "../hooks/useCards";
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 const ContextCards = createContext(null);
 
-export default function CardProvider({ children }) {
+export default function CardProvider({ children, themeMode = 'light' }) {
   const [cards,setCards] = useState([])
+  const theme = createTheme({
+    palette: {
+      mode: themeMode,
+    },
+    cssVariables: true,
+  });
   useEffect(() => {
     async function fetchCards() {
         try {
@@ -25,7 +33,10 @@ export default function CardProvider({ children }) {
   }, []);
   return (
     <ContextCards.Provider value={cards}>
-      {children}
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
     </ContextCards.Provider>
   );
 }
