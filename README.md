@@ -14,11 +14,7 @@ A React project built to explore and practice Material UI (MUI) through a real-w
 ## Demo
 
 Live demo:
-[![Demo](./src/assets/gif/demo.gif)](https://muiprivate.vercel.app/)
-
-**Preview**
-
-<img src="./src/assets/gif/demo.gif" alt="Demo" width="900">
+[👁️ https://muiprivate.vercel.app/](https://muiprivate.vercel.app/)
 
 ---
 
