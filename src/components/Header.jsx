@@ -8,7 +8,7 @@ import Home from '@mui/icons-material/Home';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import Face2Icon from '@mui/icons-material/Face2';
 import { LikedContext } from '../context/LikedProvider';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 const MaterialUISwitch = styled(Switch)(({ theme }) => ({
   width: 62,
@@ -84,7 +84,6 @@ const HeaderComponent = styled(Container)(({ theme }) => ({
   gap:'2rem',
   alignItems: 'center',
   justifyContent: 'space-between',
-  flexWrap: 'wrap',
   [theme.breakpoints.down('sm')]: {
     justifyContent: 'center',
     gap: '0.5rem',
@@ -96,6 +95,19 @@ function Header(props){
   const theme = useTheme();
   const {likedCards} = useContext(LikedContext);
   const {_,setMode} = useColorScheme();
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <HeaderComponent>
       <FormGroup sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'center', gap: 1 }}>
@@ -103,7 +115,7 @@ function Header(props){
           checked={props.darkTheme}
           onChange={(e) => {props.setDarkTheme(e.target.checked);setMode(e.target.checked?"dark":"light")}}
           control={<MaterialUISwitch sx={{ m: 0 }} />}
-          label={props.darkTheme ? 'Dark Mode' : 'Light Mode'}
+          label={width < 1050 ? "" : props.darkTheme ? 'Dark Mode' : 'Light Mode'}
           labelPlacement="start"
           sx={{ color: 'text.primary', mr: 0 }}
         />

@@ -3,8 +3,10 @@ import CardInput from "./cardInput";
 import { Container, Box } from "@mui/material";
 import { useEffect, useState, useRef } from "react";
 import Template from "./Template";
+import { useLocation } from "react-router-dom";
 
 export default function Home() {
+  const location = useLocation();
   const [value, setValue] = useState([39, 80]);
   const [cardNumber, setCardNumber] = useState(["6221", "0612", "", ""]);
   const [expirationDate, setExpirationDate] = useState(["", ""]);
@@ -18,6 +20,17 @@ export default function Home() {
   const originalTop = useRef(0);
 
   useEffect(() => {
+    if (location.hash) {
+      const element = document.querySelector(location.hash);
+
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    }
+    
     if (containerRef.current) {
       const rect = containerRef.current.getBoundingClientRect();
       originalTop.current = rect.top + window.scrollY;
@@ -107,7 +120,7 @@ export default function Home() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [location]);
     return(
         <div style={{width : "100%" , position : "relative" , display:"flex" , flexDirection : "column" , justifyContent : "center" , alignItems : "center"}}>
         <div  ref={containerRef} className="container">

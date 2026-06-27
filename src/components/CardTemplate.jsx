@@ -1,7 +1,7 @@
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from '@mui/icons-material/Share';
-import { styled,Card,CardActions,IconButton } from "@mui/material";
+import { styled,Card,CardActions,IconButton, useColorScheme } from "@mui/material";
 import FlipCart from "./FlipCart";
 import { Link } from 'react-router-dom';
 import { LikedContext } from "../context/LikedProvider";
@@ -17,16 +17,26 @@ const AllTemplates = styled('div')(() => ({
 
 
 function CardTemplate({ cards }) {
-  
+  const {mode,_} = useColorScheme();
   const {likedCards,toggle} = useContext(LikedContext);
-  console.log(likedCards)
+  
   return (
-    <AllTemplates sx={{gap: {xs:'5px',md:'20px'},}}>
+    <AllTemplates sx={{gap: {xs:'5px',md:'20px'},}} id="templates">
       {cards.map((card) => {
         const isLiked = likedCards[card.id] || false;
 
         return (
-          <Card key={card.id} sx={{ minWidth: "20vw", display:"flex", flexDirection:"column", p:{xs:2,md:3}, borderRadius:"1rem" }}>
+          <Card 
+            key={card.id} 
+            sx={{ 
+              minWidth: "20vw", 
+              display:"flex", 
+              flexDirection:"column", 
+              p:{xs:2,md:3}, 
+              borderRadius:"1rem" ,
+              bgcolor: `${mode==="system"?"white":mode==="light"?"white":"var(--color-dark-light-form-background)"}`,
+            }}
+          >
             <Link to={`/cards/${card.id}`}>
               <FlipCart
                 value={[39, 80]}

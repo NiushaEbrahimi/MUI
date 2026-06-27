@@ -1,8 +1,10 @@
 html{
   font-size: 25px;
+  scroll-behavior: smooth;
 }
 :root {
   --color-dark-light-mode: black;
+  --color-dark-light-form-background: #173168d2;
 }
 
 * {

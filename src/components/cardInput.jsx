@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, useColorScheme } from "@mui/material";
 import styles from "../assets/css/cardInput.module.css";
 import CardSlider from "./CardSlider";
 import CardNumberParts from "./CardNumberParts";
@@ -8,13 +8,15 @@ import CardHolderField from "./CardHolderField";
 import CardColorPicker from "./CardColorPicker"
 
 export default function CardInput(props) {
+  const {mode,_} = useColorScheme();
+  console.log(mode)
   return (
     <Box
       sx={{
         p: 6,
         border: "1px rgba(0,0,0,0.2) solid",
         borderRadius: "1rem",
-        bgcolor: "white",
+        bgcolor: `${mode==="system"?"white":mode==="light"?"white":"var(--color-dark-light-form-background)"}`,
         boxShadow: "0px 0px 10px 10px rgba(0,0,0,0.1)",
         display: "flex",
         flexDirection: "column",
