@@ -1,5 +1,11 @@
+@font-face {
+  font-family: "Dongle";
+  src: url("./assets/fonts/Nunito-SemiBold.ttf");
+  font-weight: normal;
+}
+
 html{
-  font-size: 25px;
+  font-size: 18px;
   scroll-behavior: smooth;
 }
 :root {
