@@ -1,7 +1,7 @@
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from '@mui/icons-material/Share';
-import { styled,Card,CardActions,IconButton, useColorScheme } from "@mui/material";
+import { styled, Card, CardActions, IconButton, useColorScheme, Skeleton } from "@mui/material";
 import FlipCart from "./FlipCart";
 import { Link } from 'react-router-dom';
 import { LikedContext } from "../context/LikedProvider";
@@ -16,10 +16,40 @@ const AllTemplates = styled('div')(() => ({
 }));
 
 
-function CardTemplate({ cards }) {
+function CardTemplate({cards,loading}) {
   const {mode,_} = useColorScheme();
   const {likedCards,toggle} = useContext(LikedContext);
-  
+
+  if (loading) {
+    return (
+      <AllTemplates sx={{gap: {xs:'5px',md:'20px'},}} id="templates">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <Card
+            key={index}
+            sx={{
+              minWidth: "20vw",
+              display: "flex",
+              flexDirection: "column",
+              p: { xs: 2, md: 3 },
+              borderRadius: "1rem",
+            }}
+          >
+            <Skeleton
+              variant="rounded"
+              animation="wave"
+              width="320px"
+              height={180}
+            />
+
+            <CardActions disableSpacing sx={{display:"flex",gap:"10px"}}>
+              <Skeleton variant="circular" width={40} height={40} />
+              <Skeleton variant="circular" width={40} height={40} />
+            </CardActions>
+          </Card>
+        ))}
+      </AllTemplates>
+    );
+  }
   return (
     <AllTemplates sx={{gap: {xs:'5px',md:'20px'},}} id="templates">
       {cards.map((card) => {

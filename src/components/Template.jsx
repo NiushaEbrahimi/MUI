@@ -1,14 +1,14 @@
 import { Container,Typography} from "@mui/material";
 import CardTemplate from "./CardTemplate";
-import { ContextCards } from "../context/Provider";
 import { useContext } from "react";
+import { ContextCards } from "../context/Provider";
 
 function Template() {
-    const cards = useContext(ContextCards);
+    const { cards, loading } = useContext(ContextCards);
     return(
         <Container sx={{width : "100%",p: {xs:"0px"}}}>
             <Typography variant="h2">Templates</Typography>
-            <CardTemplate cards={cards}></CardTemplate>
+            <CardTemplate cards={cards} loading={loading}/>
         </Container>
     )
 }

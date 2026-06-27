@@ -109,7 +109,7 @@ export default function LikedCards({cards}){
     const cardsNew = cards.filter(card => !!likedCards[card.id]);
     return(
         <Container sx={{p:8 , mt :10 , width : "100%" , height: "85vh" , display : "flex" , alignItems : "center" , justifyContent : "center"}}>
-            <CardTemplate cards={ cardsNew}></CardTemplate>
+            <CardTemplate cards={ cardsNew} loading={false}></CardTemplate>
         </Container>
     )
 } 

@@ -7,6 +7,7 @@ const ContextCards = createContext(null);
 
 export default function CardProvider({ children, themeMode = 'light' }) {
   const [cards,setCards] = useState([])
+  const [loading,setLoading] = useState(true)
   const theme = createTheme({
     palette: {
       mode: themeMode,
@@ -27,12 +28,15 @@ export default function CardProvider({ children, themeMode = 'light' }) {
         catch {
           setCards(MOCK_API)
         }
+        finally{
+          setLoading(false);
+        }
     }
     fetchCards();
     
   }, []);
   return (
-    <ContextCards.Provider value={cards}>
+    <ContextCards.Provider value={{cards,loading}}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
         {children}

@@ -14,7 +14,7 @@ import LikedProvider from './context/LikedProvider';
 // TODO: make the form prettier
 // TODO: dark mode
 function AppContent({ darkTheme, setDarkTheme }) {
-  const cards = useContext(ContextCards);
+  const {cards,_} = useContext(ContextCards);
 
   useEffect(() => {
     const body = document.body;
